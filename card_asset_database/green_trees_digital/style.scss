@@ -1,0 +1,151 @@
+$color-bg-green: #82BC02;
+* {
+    -webkit-user-select: none;
+    /* Chrome all / Safari all */
+    -moz-user-select: none;
+    /* Firefox all */
+    -ms-user-select: none;
+    /* IE 10+ */
+    user-select: none;
+    /* Likely future */
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    body {
+        width: 100%;
+        height: 100%;
+        background-color: $color-bg-green;
+        overflow: hidden;
+        #card_container {
+            width: 820px;
+            height: 580px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0);
+            font-size: 20px;
+            #tree_collage {
+                opacity: 1;
+                position: absolute;
+                top: 1000px;
+                left: 50%;
+                margin-left: -(576px / 2);
+                width: 576px;
+                height: 260px;
+                .tree_entity {
+                    opacity: 0;
+                    width: 87px;
+                    height: 168px;
+                    position: absolute;
+                    mix-blend-mode: multiply;
+                    &.tree_dark {
+                        background: url('images/tree_entity_dark.png') no-repeat;
+                        &.tree_1 {
+                            left: 0;
+                            top: 75px;
+                        }
+                        &.tree_2 {
+                            left: 136px;
+                            top: 44px;
+                        }
+                        &.tree_3 {
+                            left: 236px;
+                            top: 12px;
+                        }
+                        &.tree_4 {
+                            left: 344px;
+                            top: 44px;
+                        }
+                        &.tree_5 {
+                            left: 445px;
+                            top: 56px;
+                        }
+                    }
+                    &.tree_light {
+                        background: url('images/tree_entity_light.png') no-repeat;
+                        &.tree_1 {
+                            left: 42px;
+                            top: 12px;
+                        }
+                        &.tree_2 {
+                            left: 188px;
+                            top: 92px;
+                        }
+                        &.tree_3 {
+                            left: 381px;
+                            top: 25px;
+                        }
+                        &.tree_4 {
+                            left: 487px;
+                            top: 0px;
+                        }
+                    }
+                }
+            }
+            #tree_abyss {
+                opacity: 0;
+                position: absolute;
+                top: 800px;
+                left: 50%;
+                margin-left: -(67px / 2);
+                width: 67px;
+                height: 131px;
+                z-index: 998;
+            }
+            .logo {
+                opacity: 0;
+                position: absolute;
+                bottom: 50px;
+                width: 180px;
+                height: 43px;
+                left: 50%;
+                margin-left: -(180px / 2);
+                display: block;
+                background-repeat: no-repeat;
+            }
+        }
+        #happy_holidays {
+            opacity: .0;
+            text-align: center;
+            position: absolute;
+            top: 375px;
+            min-height: 20px;
+            width: 800px;
+            left: 50%;
+            margin-left: -(800px / 2);
+        }
+        #text {
+            z-index: 999;
+            opacity: 1;
+            text-align: center;
+            position: absolute;
+            top: 300px;
+            min-height: 20px;
+            width: 800px;
+            left: 50%;
+            margin-left: -(800px / 2);
+            >#text_line_1 {
+                display: block;
+                margin-bottom: 5px;
+                opacity: 0;
+            }
+            >#text_line_2 {
+                opacity: 0;
+            }
+        }
+        #replay {
+            width: 800px;
+            left: 50%;
+            margin-left: -(800px / 2);
+            position: absolute;
+            bottom: -50px;
+            text-align: center;
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+}

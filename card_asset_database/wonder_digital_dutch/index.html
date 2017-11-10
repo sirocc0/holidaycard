@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>W I N T E R Z E I T</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="reset-min.css" rel="stylesheet" type="text/css" />
+        <link href="style-min.css" rel="stylesheet" type="text/css" />
+        <!--[if lt IE 9]>
+            <script src="html5shiv.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+
+        <div id="open">
+           <a href="#" title="Open"><img src="img_small/open.png"></a>
+        </div>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+
+        <!--start-->
+
+        <div id="body_ghost">
+
+            <div id="container" class="container" style="display: none;">
+
+                <div id="scene" class="scene" data-relative-input="true" data-clip-relative-input="true" data-hover-only="true" data-limit-y="100" data-limit-y="100" data-natural-width="1024" data-natural-height="854">
+                    
+                    <div id="card-greeting">
+                        <div id="card-greeting-inner">
+                            <div id="card-greeting-inner-greeting">
+                                <img src="img_small/wonder_text.png">
+                            </div>
+                            <div id="card-greeting-inner-logo">
+                                <img src="img_small/inner_logo.png">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="layer" id="card-bg" data-depth="0.00" data-natural-width="1024" data-natural-height="854"><img src="img_small/bg.png"></div>
+                    <div class="layer" id="card-fog-b" data-depth-x="0.80" data-depth-y="0.22"><img src="img_small/fog_b.png" data-natural-width="1024" data-natural-height="854"></div>
+                    <div class="layer" id="card-text" data-depth-x="0.11" data-depth-y="0.10"><img src="img_small/text.png" data-natural-width="1024" data-natural-height="854"></div>
+                    <div class="layer" id="card-deer" data-depth-x="0.17" data-depth-y="0.25"><img src="img_small/deer.png" data-natural-width="1024" data-natural-height="854"></div>
+
+                    <div class="layer" id="card-fog" data-depth-x="0.50" data-depth-y="0.22"><img src="img_small/fog.png" data-natural-width="1024" data-natural-height="854"></div>
+                    <div class="layer" id="card-snow" data-depth-x="0.05" data-depth-y="0.4"><img src="img_small/snow.png" data-natural-width="1024" data-natural-height="854"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.compatibility.min.js"></script>
+        <!-- <script src="tilt.jquery.js"></script> -->
+        <script src="parallax.js"></script>
+
+        <script>
+
+            if (typeof Object.assign != 'function') {
+  Object.assign = function(target) {
+    'use strict';
+    if (target == null) {
+      throw new TypeError('Cannot convert undefined or null to object');
+    }
+
+    target = Object(target);
+    for (var index = 1; index < arguments.length; index++) {
+      var source = arguments[index];
+      if (source != null) {
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+    }
+    return target;
+  };
+}
+
+        $(document).ready(function(){
+
+            var cardPlayed = false;
+
+            //initialize parallax
+            var scene = $('#scene').get(0);
+            var parallax = new Parallax(scene);
+
+            function cardPlayCode() {
+
+                //hide card layers and master container
+                $('.layer','.container',"#card-greeting").hide();
+
+                //fade in container
+                $('.container').fadeIn(2000);
+
+                //turn off parallax effect
+                parallax.disable();
+
+                //fade in and animate card
+                $('#card-bg').fadeIn(2000).queue(function(){
+                $('#card-fog').fadeIn(500).queue(function(){
+                $('#card-fog-b').fadeIn(500).queue(function(){
+                $('#card-snow').fadeIn({queue: false, duration: 1000}).animate({top: '+62px'}, 800).queue(function(){
+                $('#card-deer').fadeIn(1000).queue(function(){
+                $('#card-text').fadeIn(1500,"swing").queue(function(){
+
+                //turn tilt.js on for rotating
+                //  $('#container').tilt({
+                //     glare: true,
+                //     maxGlare: .05,
+                //     scale: 1, 
+                //     maxTilt: 02,
+                // })
+
+                    //turn on parallax effect
+                    parallax.enable();
+                    cardPlayed = true;
+                    
+
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+            };
+
+            //play card via function
+            cardPlayCode();
+
+            //instantiate anonymous function after 10s
+            setTimeout(function() {
+
+                //readjust tilt params
+
+
+                $('#open').fadeIn(1000);
+
+                //change cursor to a pointer
+                $('body').css("cursor","pointer");
+                $('#container').css("cursor","pointer");
+
+                //function when clikcing on card
+                $('body').click(function(){
+
+                    $('#open').fadeOut(1000);
+
+                    $('#body_ghost').css("background-color","rgba(255,255,255,0)");
+
+                    //fade in greeting overlay
+                    $('#card-greeting-inner-greeting').fadeIn(2000)
+                    $('#card-greeting').fadeIn(2000, function(){
+                        $('#card-greeting-inner').fadeIn(1200, function(){
+                          
+                                $('#card-greeting-inner-logo').delay(300).fadeIn(1000);
+                          
+                        });
+                    });
+                    //change icon back to default cursor
+                    $('body').css("cursor","default");
+                    $('#container').css("cursor","default");
+                    $('#open').closest('a').remove();
+                })
+
+            }, 5000);
+
+        })
+
+        </script>
+
+    </body>
+</html>
